@@ -19,16 +19,16 @@ public class MainCameraScript : MonoBehaviour
     void Update()
     {
     	if(player != null){
-	    	 transform.position = new Vector3(
-	    	 		player.transform.position.x,
-	    	 		player.transform.position.y+20,
-	    	 		player.transform.position.z
-	    	 	); 
+	    	transform.position = new Vector3(
+	    			player.transform.position.x,
+	    			player.transform.position.y+20,
+	    			player.transform.position.z
+	    		); 
 		   // Vector3 desiredPosition = player.transform.position + offset;
 	       // Vector3 position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * damping);
 	       // transform.position = position;
 	 //
-	       // transform.LookAt(player.transform.position);
+	    //    transform.LookAt(player.transform.position);
     	} else if(player == null){
     		Debug.Log("////// WARNING //////");
     		Debug.Log("The player GameObject name was not set properly in MainCameraScript.");
