@@ -12,9 +12,11 @@ public class EventScript : MonoBehaviour
     private Vector3 _randomPosition;
     public bool spawner;
 
-    public int smashCount = 100;
+    public int smashCount = 10;
 
     private int t = 0;
+
+    private bool isFirering = false;
 
 
     // Start is called before the first frame update
@@ -54,16 +56,21 @@ public class EventScript : MonoBehaviour
     void OnTriggerStay(Collider other)
     {
 
-        if (other.gameObject.tag == "Player" && Input.GetButton("Fire1"))
+        if (!isFirering && other.gameObject.tag == "Player" && Input.GetButton("Fire1"))
         {
+            isFirering = true;
             if (gameObject.tag == "Type 2")
             {
                 t++;
                 Debug.Log("T =" + t + "%");
-                if (t == smashCount) {
+                if (t >= smashCount) {
                     Destroy(gameObject, 2);
                     Debug.Log("Smash Complete!");
                     t = 0;
+                    GameObject player = other.gameObject;
+                    if(player != null){
+                        player.GetComponent<PlayerScript>().addScore();
+                    }
                 };
 
             }
@@ -73,6 +80,8 @@ public class EventScript : MonoBehaviour
                 Destroy(gameObject, 2);
                 Debug.Log("Destruction");
             }
+        } else if ( isFirering && !(other.gameObject.tag == "Player" && Input.GetButton("Fire1")) ){
+            isFirering = false;
         }
     }
 

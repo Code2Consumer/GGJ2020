@@ -5,9 +5,12 @@ using UnityEngine;
 public class HUDScript : MonoBehaviour
 {
 
-	private GameObject GameOverText;
+    private GameObject GameOverText;
+	private GameObject planetHpScrollBarUI;
 	private GameObject RetryTextButton;
 	private GameObject ScoreText;
+
+    private GameObject player;
 
 	private int scoreTotal 			     = 0;
 	
@@ -19,18 +22,18 @@ public class HUDScript : MonoBehaviour
 		GameOverText 			= GameObject.Find("GameOverText");
 		RetryTextButton 		= GameObject.Find("RetryTextButton");
     	ScoreText 				= GameObject.Find("ScoreText");
-
+        player                  = GameObject.Find("player");
+        planetHpScrollBarUI     = GameObject.Find("planetHpScrollBarUI");
     	GameOverText.GetComponent<UnityEngine.UI.Text>().enabled = false;
     	RetryTextButton.GetComponent<UnityEngine.UI.Text>().enabled = false;
 
-    	updateRageBar(0);
+    	updatePlanetLife(1);
     }
 
     // Update is called once per frame
     void Update()
     {
         updateScore();
-    	// updateRageBar(0.3f);
     }
 
     public void updateLifePoints(int lifePoint){
@@ -43,13 +46,18 @@ public class HUDScript : MonoBehaviour
     }
 
     public void updateScore(){
-    	float score = GameObject.Find("player").GetComponent<PlayerScript>().getScore();
-    	ScoreText.GetComponent<UnityEngine.UI.Text>().text = score+"";
-
-        // float scoreDejaUtilisee = GameObject.Find("Chevalier").GetComponent<Chevalier_Deplacement>().scoreDejaUtilise;
-    	// float scorePercenage = ( (score-scoreDejaUtilisee) / GameObject.Find("Chevalier").GetComponent<Chevalier_Deplacement>().scorePerEnemyKilled ) / 
-    	// GameObject.Find("Chevalier").GetComponent<Chevalier_Deplacement>().enemyNecessairePourFullRage;
-    	// updateRageBar(scorePercenage);
+        if(player != null){
+        	float score = player.GetComponent<PlayerScript>().getScore();
+        	ScoreText.GetComponent<UnityEngine.UI.Text>().text = score+"";
+            float planetHP          = player.GetComponent<PlayerScript>().getPlanetHp();
+            float startingPlanetHp  = player.GetComponent<PlayerScript>().getStartingPlanetHp();
+            updatePlanetLife(planetHP/startingPlanetHp);
+            if(planetHP <= 0){
+                gameOver();
+            }
+        } else {
+            gameOver();
+        }
     }
 
     public void gameOver(){
@@ -65,8 +73,8 @@ public class HUDScript : MonoBehaviour
     	Application.LoadLevel(Application.loadedLevel);
     }
 
-    public void updateRageBar(float ragePercentage){
-    //	ragePercentage  		= ragePercentage > 1 ? 1 : ragePercentage;
-    // RageBarScrollBarUI.GetComponent<UnityEngine.UI.Scrollbar>().size = ragePercentage;
+    public void updatePlanetLife(float lifePercentage){
+        lifePercentage  		= lifePercentage > 1 ? 1 : lifePercentage;
+        planetHpScrollBarUI.GetComponent<UnityEngine.UI.Scrollbar>().size = lifePercentage;
 	}
 }
