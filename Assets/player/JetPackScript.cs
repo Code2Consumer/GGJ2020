@@ -29,6 +29,7 @@ public class JetPackScript : MonoBehaviour
             activateParticle = false;
 
         if(h!=0 || v != 0){
+            GameObject.Find("CustumSoundManager").GetComponent<CustumSoundManagerScript>().playHammer();
 
             Debug.Log("h : " + h );
             Debug.Log("v : " + v );
@@ -63,9 +64,7 @@ public class JetPackScript : MonoBehaviour
             } 
 
             Debug.Log("down");
-            y = -1;
-
-        }
+            y = -1;        }
 
 		if(speed != 0 || y != 0){
 			direction = (new Vector3(h*speed, y*speed, v*speed) * Time.deltaTime * speed ) + transform.position;
