@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerScript : MonoBehaviour
+public class MenuScript : MonoBehaviour
 {
-    public float scrore = 100;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +16,11 @@ public class PlayerScript : MonoBehaviour
         
     }
 
-    public float getScore(){
-    	return scrore;
+    public void startGame(){
+    	Application.LoadLevel("Scenes/world_test");
+    }
+
+    public void exitGame(){
+		Application.Quit();
     }
 }
