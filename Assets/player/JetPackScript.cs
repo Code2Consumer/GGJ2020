@@ -22,10 +22,9 @@ public class JetPackScript : MonoBehaviour
 		v = Input.GetAxisRaw("Vertical");
 
     	speed = 0 ;
-    	speed = mainSpeed ;
 
 		if(h!=0 || v != 0){
-			if(h!=0 && v != 0){
+			if(h!=0 && v!=0){
 				speed = mainSpeed * 0.75f;
 			} else {
 				speed = mainSpeed ;
@@ -33,12 +32,10 @@ public class JetPackScript : MonoBehaviour
 		}
 
 		if(speed != 0){
-
 			direction = (new Vector3(h*speed, 0, v*speed) * Time.deltaTime * speed ) + transform.position;
 		   	transform.position = Vector3.MoveTowards(transform.position, direction, speed );
 		    //Vector3 position = Vector3.Lerp(transform.position, new Vector3(direction.x*2, transform.position.y, direction.z*2), Time.deltaTime * 0.5f);
-
-
+		    
 			rotation = new Vector3(
 					h + transform.position.x,
 					transform.position.y,
