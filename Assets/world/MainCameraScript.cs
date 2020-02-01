@@ -18,7 +18,7 @@ public class MainCameraScript : MonoBehaviour
     	if(player != null){
 	    	transform.position = new Vector3(
 	    			player.transform.position.x,
-	    			player.transform.position.y+50,
+	    			player.transform.position.y+5,
 	    			player.transform.position.z
 	    		); 
     	} else if(player == null){
