@@ -28,7 +28,7 @@ public class MainCameraScript : MonoBehaviour
 	       // Vector3 position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * damping);
 	       // transform.position = position;
 	 //
-	    //    transform.LookAt(player.transform.position);
+	        transform.LookAt(player.transform.position);
     	} else if(player == null){
     		Debug.Log("////// WARNING //////");
     		Debug.Log("The player GameObject name was not set properly in MainCameraScript.");

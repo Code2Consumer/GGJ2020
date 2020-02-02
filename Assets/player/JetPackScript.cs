@@ -11,6 +11,8 @@ public class JetPackScript : MonoBehaviour
     private float mainSpeed = 6;
     private float speed = 6;
 
+    private float y  ;
+
     void Start()
     {
     	
@@ -21,20 +23,50 @@ public class JetPackScript : MonoBehaviour
         h = Input.GetAxisRaw("Horizontal");
 		v = Input.GetAxisRaw("Vertical");
 
-    	speed = 0 ;
 
-		if(h!=0 || v != 0){
-			if(h!=0 && v!=0){
-				speed = mainSpeed * 0.75f;
-			} else {
-				speed = mainSpeed ;
-			} 
-		}
+        speed = 0 ;
 
-		if(speed != 0){
-			direction = (new Vector3(h*speed, 0, v*speed) * Time.deltaTime * speed ) + transform.position;
+        if(h!=0 || v != 0){
+
+            Debug.Log("h : " + h );
+            Debug.Log("v : " + v );
+            if(h!=0 && v!=0){
+                speed = mainSpeed * 0.75f;
+            } else {
+                speed = mainSpeed ;
+            } 
+        }
+
+        y = 0;
+        if (Input.GetKey("u"))
+        {
+            if(h!=0 && v!=0){
+                speed = mainSpeed * 0.75f;
+            } else {
+                speed = mainSpeed ;
+            } 
+
+            Debug.Log("up");
+            y = 1;
+
+        }
+
+        if (Input.GetKey("i"))
+        {
+            if(h!=0 && v!=0){
+                speed = mainSpeed * 0.75f;
+            } else {
+                speed = mainSpeed ;
+            } 
+
+            Debug.Log("down");
+            y = -1;
+
+        }
+
+		if(speed != 0 || y != 0){
+			direction = (new Vector3(h*speed, y*speed, v*speed) * Time.deltaTime * speed ) + transform.position;
 		   	transform.position = Vector3.MoveTowards(transform.position, direction, speed );
-		    //Vector3 position = Vector3.Lerp(transform.position, new Vector3(direction.x*2, transform.position.y, direction.z*2), Time.deltaTime * 0.5f);
 		    
 			rotation = new Vector3(
 					h + transform.position.x,
@@ -43,23 +75,11 @@ public class JetPackScript : MonoBehaviour
 				);
 
 			transform.LookAt(rotation);
-		}
+
+        }
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
 	 
 
-    }
-
-    void FixedUpdate()
-    {
-
-        // if (isMoving)
-        // {
-        //     // when the cube has moved for 10 seconds, report its position
-        //     time = time + Time.fixedDeltaTime;
-        //     if (time > 10.0f)
-        //     {
-        //         Debug.Log(gameObject.transform.position.y + " : " + time);
-        //         time = 0.0f;
-        //     }
-        // }
     }
 }
