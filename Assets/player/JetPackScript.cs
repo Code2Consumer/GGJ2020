@@ -12,6 +12,7 @@ public class JetPackScript : MonoBehaviour
     private float speed = 6;
 
     private float y  ;
+    private bool activateParticle = false  ;
 
     void Start()
     {
@@ -25,6 +26,7 @@ public class JetPackScript : MonoBehaviour
 
 
         speed = 0 ;
+            activateParticle = false;
 
         if(h!=0 || v != 0){
 
@@ -48,6 +50,7 @@ public class JetPackScript : MonoBehaviour
 
             Debug.Log("up");
             y = 1;
+            activateParticle = true;
 
         }
 
@@ -75,11 +78,20 @@ public class JetPackScript : MonoBehaviour
 				);
 
 			transform.LookAt(rotation);
-
         }
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
-        GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-	 
+
+        if(y != 0){
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            GetComponent<Rigidbody>().angularVelocity = Vector3.zero; 
+        } else {
+        }
+    	
+            GetComponent<ParticleSystem>().enableEmission = activateParticle;
+        // if(activateParticle){
+        //     GetComponent<ParticleSystem>().Play();
+        // } else {
+        //     GetComponent<ParticleSystem>().Stop();
+        // }
 
     }
 }
