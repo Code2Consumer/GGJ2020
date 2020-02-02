@@ -61,11 +61,11 @@ public class HUDScript : MonoBehaviour
     }
 
     public void gameOver(){
-      //   GameObject.Find("CustumSoundManager").GetComponent<CustumSoundManagerScript>().playGameOver();
+      //   GameO0bject.Find("CustumSoundManager").GetComponent<CustumSoundManagerScript>().playGameOver();
 
-    	GameOverText.GetComponent<UnityEngine.UI.Text>().enabled = true;
-    	RetryTextButton.GetComponent<UnityEngine.UI.Text>().enabled = true;
-        Time.timeScale = 0.1f ;
+    //	GameOverText.GetComponent<UnityEngine.UI.Text>().enabled = true;
+    //	RetryTextButton.GetComponent<UnityEngine.UI.Text>().enabled = true;
+      //  Time.timeScale = 0.1f ;
     }
 
     public void retryAction(){
@@ -75,6 +75,6 @@ public class HUDScript : MonoBehaviour
 
     public void updatePlanetLife(float lifePercentage){
         lifePercentage  		= lifePercentage > 1 ? 1 : lifePercentage;
-        planetHpScrollBarUI.GetComponent<UnityEngine.UI.Scrollbar>().size = lifePercentage;
+    //    planetHpScrollBarUI.GetComponent<UnityEngine.UI.Scrollbar>().size = lifePercentage;
 	}
 }
