@@ -10,7 +10,13 @@ public class EventScript : MonoBehaviour
     private float _yAxis;
     private float _zAxis; //If you need this, use it
     private Vector3 _randomPosition;
+    private Vector3[] spawnPositions = {
+            new Vector3(-132, 7, 37),
+            new Vector3(-43, 7, 153),
+            new Vector3(64, 7, 23)
+        };
     public bool spawner;
+    private int nbSpawner = 3;
 
     public int smashCount = 10;
 
@@ -23,6 +29,7 @@ public class EventScript : MonoBehaviour
     private void Start()
     {
         SetRanges();
+        InvokeRepeating("InstantiateRandomObjects", 1.0f, 5.0f);
     }
 
     // Update is called once per frame
@@ -43,7 +50,7 @@ public class EventScript : MonoBehaviour
     {
         if (spawner)
         {
-            Instantiate(gameObject, _randomPosition, Quaternion.identity);
+           // Instantiate(gameObject, spawnPositions[Random.Range(0, spawnPositions.Count)], Quaternion.identity);
         }
 
     }
@@ -77,9 +84,20 @@ public class EventScript : MonoBehaviour
             else
             {
                 Debug.Log("colision");
+                //Affiche(gameObject.text);
                 Destroy(gameObject, 2);
+                GameObject player = other.gameObject;
+                if (player != null) player.GetComponent<PlayerScript>().addScore();
                 Debug.Log("Destruction");
             }
+            /*else
+            {
+                Debug.Log("colision");
+                Affiche(gameObject.text);
+                GameObject player = other.gameObject;
+                if (player != null) player.GetComponent<PlayerScript>().addScore();
+                Debug.Log("Destruction");
+            }*/
         } else if ( isFirering && !(other.gameObject.tag == "Player" && Input.GetButton("Fire1")) ){
             isFirering = false;
         }
