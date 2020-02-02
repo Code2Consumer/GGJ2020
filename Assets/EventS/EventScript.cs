@@ -24,10 +24,14 @@ public class EventScript : MonoBehaviour
 
     private bool isFirering = false;
 
+    public string textUiString = "Bravos ! Sa n'avait rien à faire ici !";
 
+    private GameObject player ;
+    private GameObject textUI ;
     // Start is called before the first frame update
     private void Start()
     {
+        textUI = GameObject.Find("user_message_text");
         SetRanges();
         InvokeRepeating("InstantiateRandomObjects", 1.0f, 5.0f);
     }
@@ -71,10 +75,11 @@ public class EventScript : MonoBehaviour
                 t++;
                 Debug.Log("T =" + t + "%");
                 if (t >= smashCount) {
+
                     Destroy(gameObject, 2);
                     Debug.Log("Smash Complete!");
                     t = 0;
-                    GameObject player = other.gameObject;
+                    player = other.gameObject;
                     if(player != null){
                         player.GetComponent<PlayerScript>().addScore();
                     }
@@ -84,9 +89,9 @@ public class EventScript : MonoBehaviour
             else
             {
                 Debug.Log("colision");
-                //Affiche(gameObject.text);
+                afficheText();
                 Destroy(gameObject, 2);
-                GameObject player = other.gameObject;
+                player = other.gameObject;
                 if (player != null) player.GetComponent<PlayerScript>().addScore();
                 Debug.Log("Destruction");
             }
@@ -94,7 +99,7 @@ public class EventScript : MonoBehaviour
             {
                 Debug.Log("colision");
                 Affiche(gameObject.text);
-                GameObject player = other.gameObject;
+                player = other.gameObject;
                 if (player != null) player.GetComponent<PlayerScript>().addScore();
                 Debug.Log("Destruction");
             }*/
@@ -103,5 +108,20 @@ public class EventScript : MonoBehaviour
         }
     }
 
+    void afficheText() {
+        textUI
+        .GetComponent<UnityEngine.UI.Text>()
+        .text = textUiString;
+    }
 
+    void cacherText() {
+        textUI
+        .GetComponent<UnityEngine.UI.Text>()
+        .text = "";
+    }
+
+    void OnDestroy()
+    {
+        cacherText();
+    }
 }
