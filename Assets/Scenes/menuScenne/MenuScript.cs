@@ -23,9 +23,7 @@ public class MenuScript : MonoBehaviour
     public void startGame(){
         Debug.Log("aezaze");
 
-        Application.LoadLevel("Scenes/world_test");
-        Application.LoadLevel("world_test");
-        SceneManager.LoadScene("Scenes/world_test", LoadSceneMode.Additive);
+        Application.LoadLevel("Scenes/WTF World");
         Debug.Log("azeaze");
     }
 

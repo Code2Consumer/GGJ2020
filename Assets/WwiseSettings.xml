@@ -9,5 +9,5 @@
   <SoundbankPath>Audio/GeneratedSoundBanks</SoundbankPath>
   <WwiseInstallationPathMac />
   <WwiseInstallationPathWindows>C:\Program Files (x86)\Audiokinetic\Wwise 2019.1.7.7135</WwiseInstallationPathWindows>
-  <WwiseProjectPath>../../../GGJ2020 Wwise SessionLEBON/GGJ2020 Wwise Session.wproj</WwiseProjectPath>
+  <WwiseProjectPath>../../../GGJ2020 Wwise Session/GGJ2020 Wwise Session.wproj</WwiseProjectPath>
 </WwiseSettings>

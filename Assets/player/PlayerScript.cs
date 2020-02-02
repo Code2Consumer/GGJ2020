@@ -15,6 +15,8 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject.Find("CustumSoundManager").GetComponent<CustumSoundManagerScript>().playMusique();
+        GameObject.Find("CustumSoundManager").GetComponent<CustumSoundManagerScript>().playStart();
         planetHP = startingPlanetHP;
     }
 

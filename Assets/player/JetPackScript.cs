@@ -29,8 +29,6 @@ public class JetPackScript : MonoBehaviour
             activateParticle = false;
 
         if(h!=0 || v != 0){
-            GameObject.Find("CustumSoundManager").GetComponent<CustumSoundManagerScript>().playHammer();
-
             Debug.Log("h : " + h );
             Debug.Log("v : " + v );
             if(h!=0 && v!=0){
