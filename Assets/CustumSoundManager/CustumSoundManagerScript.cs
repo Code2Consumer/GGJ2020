@@ -56,4 +56,12 @@ public class CustumSoundManagerScript : MonoBehaviour
     public void playHammer(){
         AkSoundEngine.PostEvent( "Start", gameObject);
     }
+
+    public void playMusique(){
+        AkSoundEngine.PostEvent( "Music", gameObject);
+    }
+
+    public void playStart(){
+        AkSoundEngine.PostEvent( "Start", gameObject);
+    }
 }
