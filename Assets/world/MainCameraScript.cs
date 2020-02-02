@@ -21,8 +21,8 @@ public class MainCameraScript : MonoBehaviour
     	if(player != null){
 	    	transform.position = new Vector3(
 	    			player.transform.position.x,
-	    			player.transform.position.y+20,
-	    			player.transform.position.z
+	    			player.transform.position.y+5,
+	    			player.transform.position.z-5
 	    		); 
 		   // Vector3 desiredPosition = player.transform.position + offset;
 	       // Vector3 position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * damping);
