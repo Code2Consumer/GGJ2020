@@ -86,23 +86,27 @@ public class EventScript : MonoBehaviour
                 };
 
             }
+            else if (gameObject.tag == "Art")
+            {
+                Debug.Log("colision");
+                afficheText();
+                Destroy(gameObject, 2);
+                //cacherText();
+                player = other.gameObject;
+                if (player != null) player.GetComponent<PlayerScript>().addScore();
+                Debug.Log("Destruction");
+            }
             else
             {
                 Debug.Log("colision");
                 afficheText();
                 Destroy(gameObject, 2);
+                //cacherText();
                 player = other.gameObject;
                 if (player != null) player.GetComponent<PlayerScript>().addScore();
                 Debug.Log("Destruction");
             }
-            /*else
-            {
-                Debug.Log("colision");
-                Affiche(gameObject.text);
-                player = other.gameObject;
-                if (player != null) player.GetComponent<PlayerScript>().addScore();
-                Debug.Log("Destruction");
-            }*/
+            
         } else if ( isFirering && !(other.gameObject.tag == "Player" && Input.GetButton("Fire1")) ){
             isFirering = false;
         }

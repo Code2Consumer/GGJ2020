@@ -41,7 +41,7 @@ public class JetPackScript : MonoBehaviour
         }
 
         y = 0;
-        if (Input.GetKey("u"))
+        if (Input.GetButton("Jump"))
         {
             if(h!=0 && v!=0){
                 speed = mainSpeed * 0.75f;
